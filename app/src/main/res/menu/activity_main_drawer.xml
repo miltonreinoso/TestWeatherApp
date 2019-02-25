@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:visible="true"
+        android:menuCategory="container"
+        android:title="Other Cities Around the World:">
+        <menu>
+
+            <item
+                android:id="@+id/estambul_nav_menu_item"
+                android:title="Estambul"/>
+
+            <item
+                android:id="@+id/new_york_nav_menu_item"
+                android:title="New York" />
+            <item
+                android:id="@+id/tokyio_nav_menu_item"
+                android:title="Tokyo" />
+            <item
+                android:id="@+id/beijing_nav_menu_item"
+                android:title="Beijing" />
+            <item
+                android:id="@+id/helsinski_nav_menu_item"
+                android:title="Helsinski" />
+
+        </menu>
+    </item>
+</menu>

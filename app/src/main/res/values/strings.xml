@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">TestWeatherApp</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Simple Weather App</string>
+    <string name="nav_header_subtitle">Powered by Dark Sky</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="current_city">Current City</string>
+    <string name="new_york">New York</string>
+    <string name="tokyo">Tokyo</string>
+    <string name="istanbul">Istanbul</string>
+    <string name="beijing">Beijing</string>
+    <string name="helsinki">Helsinki</string>
 </resources>
