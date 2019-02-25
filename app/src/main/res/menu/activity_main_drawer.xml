@@ -9,6 +9,9 @@
         <menu>
 
             <item
+                android:id="@+id/current_location_nav_menu_item"
+                android:title="@string/current_city"/>
+            <item
                 android:id="@+id/istanbul_nav_menu_item"
                 android:title="@string/istanbul"/>
             <item

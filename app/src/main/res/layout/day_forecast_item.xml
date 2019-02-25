@@ -7,6 +7,7 @@
 
     <TextView
         android:id="@+id/days_list_forecast_txtv"
+        style="@style/TextStyle.ListTextStyle"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginStart="24dp"
@@ -39,6 +40,7 @@
         <TextView
             android:id="@+id/minimum_dayly_temperature_txtv"
             android:layout_width="0dp"
+            style="@style/TextStyle.ListTextStyle"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
@@ -48,6 +50,7 @@
         <TextView
             android:id="@+id/maximum_dayly_temperature_txtv"
             android:layout_width="0dp"
+            style="@style/TextStyle.ListTextStyle"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"

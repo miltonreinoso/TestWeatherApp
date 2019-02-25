@@ -14,7 +14,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -27,7 +26,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +35,7 @@ import miltonreinoso.com.testweatherapp.interfaces.WeatherCalls;
 import miltonreinoso.com.testweatherapp.models.Forecast;
 import miltonreinoso.com.testweatherapp.singleInstances.LocationsInstances;
 import miltonreinoso.com.testweatherapp.singleInstances.RetrofitSingleton;
+import miltonreinoso.com.testweatherapp.utils.ConstantsKeys;
 import miltonreinoso.com.testweatherapp.utils.ZoomOutPageTransformer;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,13 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private ImageView darkSkyLinkImgV;
     public ViewPager mViewPager;
-    private FragmentManager fragmentManager;
-    private Fragment mFragment;
-    public static String baseUrl = "https://api.darksky.net";
     public String APIKey = "6663a070c7910a4153e460e7ac6823c1";
-
-    private Timestamp currentTimestamp;
-    private double currentTime;
 
     private WeatherCalls mService;
     private Location uniqueLocation;
@@ -69,13 +62,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         mService = RetrofitSingleton.getRetrofitInstance().create(WeatherCalls.class);
 
-        currentTimestamp =  new Timestamp(System.currentTimeMillis());
-        currentTime = currentTimestamp.getTime();
-
-        /**
-         * Setting GPS Location Service and Manager
-         **/
-
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         //Request permissions for Localization and gps use.
@@ -89,10 +75,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0 ,0 ,this);
-
-        /**
-         * Setting navigation drawer
-         */
 
         //ViewPager and Toolbar
         mViewPager = findViewById(R.id.view_pager_container);
@@ -110,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
 
-
         // Setting navigation drawer
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -123,6 +104,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
 
+        fetchCityData(1, ConstantsKeys.istanbulLat, ConstantsKeys.istanbulLon);
+        fetchCityData(2, ConstantsKeys.newYorkLat, ConstantsKeys.newYorkLon);
+        fetchCityData(3, ConstantsKeys.tokyoLat, ConstantsKeys.tokyoLon);
+        fetchCityData(4, ConstantsKeys.beijingLat, ConstantsKeys.beijingLon);
+        fetchCityData(5, ConstantsKeys.helsinkiLat, ConstantsKeys.helsinkiLon);
+
+        fetchCurrentCityData();
     }
 
     public void darkSkyWebsiteIntent(){
@@ -137,6 +125,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void fetchCurrentCityData(){
         Map<String, String> queryMap = new HashMap<>();
         queryMap.put(Forecast.Units.HTTP_QUERY_KEY, Forecast.Units.SI.toString());
+        queryMap.put(Forecast.Units.HTTP_QUERY_KEY, Forecast.Units.SI.toString());
+        queryMap.put(Forecast.Language.HTTP_QUERY_KEY, Forecast.Language.SPANISH.toString());
+        queryMap.put(Forecast.Exclusion.HTTP_QUERY_KEY, Forecast.Exclusion.HOURLY.toString() + ","
+                + Forecast.Exclusion.MINUTELY.toString() + ","
+                + Forecast.Exclusion.FLAGS.toString());
 
         Call<Forecast> call = mService.getForecast(APIKey,currentLatitude, currentLongitude, queryMap);
         call.enqueue(new Callback<Forecast>() {
@@ -193,6 +186,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Map<String, String> queryMap = new HashMap<>();
         queryMap.put(Forecast.Units.HTTP_QUERY_KEY, Forecast.Units.SI.toString());
+        queryMap.put(Forecast.Language.HTTP_QUERY_KEY, Forecast.Language.SPANISH.toString());
+        queryMap.put(Forecast.Exclusion.HTTP_QUERY_KEY, Forecast.Exclusion.HOURLY.toString() + ","
+                + Forecast.Exclusion.MINUTELY.toString() + ","
+                + Forecast.Exclusion.FLAGS.toString());
 
         Call<Forecast> callLocation = mService.getForecast(APIKey,
                 latitude,
@@ -267,19 +264,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mViewPager.setCurrentItem(0);
                 break;
         }
-
-//            } else if (id == R.id.nav_gallery) {
-
-//
-//            } else if (id == R.id.nav_slideshow) {
-//
-//            } else if (id == R.id.nav_manage) {
-//
-//            } else if (id == R.id.nav_share) {
-//
-//            } else if (id == R.id.nav_send) {
-//
-//            }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

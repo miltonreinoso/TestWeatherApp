@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings" translatable="false">Ajustes</string>
+    <string name="current_city" translatable="false">Ciudad Actual</string>
+    <string name="new_york" translatable="false">Nueva York</string>
+    <string name="tokyo">Tokio</string>
+    <string name="istanbul">Estambul</string>
+    <string name="our_forecast_for_today">Nuestro Pronóstico para Hoy:</string>
+    <string name="other_cities_around_the_world">Otras Ciudades al rededpr del Mundo:</string>
+</resources>

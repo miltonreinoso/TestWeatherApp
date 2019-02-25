@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLightTransp20"
     tools:context=".activities.SplashActivity">
 
     <ProgressBar
@@ -12,7 +13,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="h,1:1"
-        app:layout_constraintWidth_percent=".5"
+        app:layout_constraintWidth_percent=".65"
+        android:padding="40dp"
+        android:background="@drawable/bg_splash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#607D8B</color>
-    <color name="colorPrimaryLight">#C5CAE9</color>
-    <color name="colorPrimaryLightTransp20">#33C5CAE9</color>
-    <color name="blue">#664455</color>
-    <color name="redsum">#ff2033</color>
-    <color name="blacksum">#000000</color>
-    <color name="darkgreysum">#1d1d1d</color>
-    <color name="lightgreysum">#616161</color>
-    <color name="redTransparent40">#66FF0000</color>
-    <color name="redA700Transparent70">#B3D50000</color>
+    <color name="colorPrimary">#FF5722</color>
+    <color name="colorPrimaryDark">#ff2033</color>
+    <color name="colorAccent">#FFC107</color>
+    <color name="colorPrimaryLight">#FFCCBC</color>
+    <color name="colorPrimaryLightTransp20">#80FFCCBC</color>
     <color name="white">#fafafa</color>
     <color name="white50Transparent20">#33fafafa</color>
     <color name="white50Transparent60">#99fafafa</color>
@@ -32,11 +25,6 @@
     <color name="grey900">#212121</color>
     <color name="grey950">#121212</color>
     <color name="greyTest">#CC121212</color>
-    <color name="blackTransparent80">#CC000000</color>
-    <color name="blackTransparent70">#B3000000</color>
-    <color name="blackTransparent60">#99000000</color>
-    <color name="blackTransparent50">#80000000</color>
-    <color name="blackTransparent30">#4D000000</color>
     <color name="blackTransparent20">#33000000</color>
     <color name="black_overlay">#000000</color>
 </resources>

@@ -47,7 +47,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent=".5" />
 
-
     <ImageView
         android:id="@+id/weather_condition_imgv"
         android:layout_width="0dp"
@@ -67,7 +66,7 @@
         android:layout_height="0dp"
         android:gravity="center"
         android:hint="Helsinsky"
-        android:background="@color/grey500Transparent50"
+        android:background="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/guideline_hor_015"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,10 +74,10 @@
 
     <TextView
         android:id="@+id/current_temp_txtv"
+        style="@style/TextStyle.TemperatureBig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="20°C"
-        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_hor_045"
         app:layout_constraintEnd_toStartOf="@+id/weather_condition_imgv"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,6 +85,7 @@
 
     <TextView
         android:id="@+id/forecast_summary_title"
+        style="@style/TextStyle.ForecastDescriptionTitle"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:paddingStart="24dp"
@@ -93,7 +93,6 @@
         android:gravity="center_vertical"
         android:text="@string/our_forecast_for_today"
         android:textAlignment="gravity"
-        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_hor_055"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,14 +100,14 @@
 
     <TextView
         android:id="@+id/current_summary_txtv"
+        style="@style/TextStyle.ForecastDescription"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingStart="32dp"
+        android:paddingStart="24dp"
         android:background="@color/colorPrimaryLight"
         android:gravity="center_vertical"
         android:hint="brief weather description "
         android:textAlignment="gravity"
-        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_hor_05"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
