@@ -18,6 +18,15 @@
         <item name="android:textColor">@color/black_overlay</item>
     </style>
 
+    <style name= "TextStyle.LocationTitle" parent= "AppTheme.TextStyle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.15</item>
+
+    </style>
+
+
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

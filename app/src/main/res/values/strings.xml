@@ -12,5 +12,6 @@
     <string name="istanbul">Istanbul</string>
     <string name="beijing">Beijing</string>
     <string name="helsinki">Helsinki</string>
+    <string name="our_forecast_for_today">Our Forecast for Today:</string>
     <string name="other_cities_around_the_world">Other Cities Around the World:</string>
 </resources>

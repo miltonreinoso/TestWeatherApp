@@ -27,6 +27,7 @@ public class ForecastFragment extends Fragment {
     private TextView currentTemperatureTxtV;
     private TextView currentLocationTxtV;
     private ImageView currentWeatherIcon;
+    private TextView currentWeatherSummaryTxtV;
     private int localPosition;
     private ListView fiveDaysForecastListView;
 
@@ -51,6 +52,7 @@ public class ForecastFragment extends Fragment {
         currentTemperatureTxtV = view.findViewById(R.id.current_temp_txtv);
         currentLocationTxtV = view.findViewById(R.id.current_location_txtv);
         currentWeatherIcon = view.findViewById(R.id.weather_condition_imgv);
+        currentWeatherSummaryTxtV = view.findViewById(R.id.current_summary_txtv);
 
         switch (localPosition){
             case 0:
@@ -81,11 +83,44 @@ public class ForecastFragment extends Fragment {
     public void setDataToViews (Forecast forecast){
 
         String currentTemperature = (int) forecast.getCurrentConditions().getTemperature() + " °C";
+        String currentWeatherSummary = forecast.getCurrentConditions().getSummary();
+
         currentTemperatureTxtV.setText(currentTemperature);
-        currentLocationTxtV.setText(forecast.getTimezone());
+        currentLocationTxtV.setText(adaptTitle(forecast.getTimezone()));
         currentWeatherIcon.setImageResource(getIconResource(forecast.getCurrentConditions().getIconString()));
+        currentWeatherSummaryTxtV.setText(currentWeatherSummary);
         setFiveDaysForecastListView(forecast);
 
+    }
+
+
+    //  Adapting the title format based on TimeZone (API dind´t include geolocalization
+    //  E.g: changing from "America/Argentina/Buenos_Aires" to "Buenos Aires"
+    private String adaptTitle(String locationTitleRaw){
+
+        String locationTitleAdapted = "";
+
+        if(localPosition == 0) {
+            locationTitleAdapted = locationTitleRaw.substring(locationTitleRaw.indexOf("/")+1);
+            if (locationTitleAdapted.contains("/")){
+                locationTitleAdapted = locationTitleAdapted.substring(locationTitleAdapted.indexOf("/")+1);
+            }
+            locationTitleAdapted = locationTitleAdapted.replace("_", " ");
+        }
+
+        switch (localPosition) {
+            case 1: locationTitleAdapted = getString(R.string.istanbul);
+            break;
+            case 2: locationTitleAdapted = getString(R.string.new_york);
+                break;
+            case 3: locationTitleAdapted = getString(R.string.tokyo);
+                break;
+            case 4: locationTitleAdapted = getString(R.string.beijing);
+                break;
+            case 5: locationTitleAdapted = getString(R.string.helsinki);
+                break;
+        }
+        return locationTitleAdapted;
     }
 
 

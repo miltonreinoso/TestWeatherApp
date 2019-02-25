@@ -13,7 +13,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".5" />
+        app:layout_constraintGuide_percent="0.65" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_hor_045"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".45" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_hor_055"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".52" />
+
+
 
 
     <android.support.constraint.Guideline
@@ -23,25 +39,34 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".15" />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_ver_05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5" />
+
 
     <ImageView
         android:id="@+id/weather_condition_imgv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:padding="40dp"
+        android:padding="20dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_hor_05"
-        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_hor_045"
+        app:layout_constraintDimensionRatio="h,1:1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ver_05"
         app:layout_constraintTop_toTopOf="@+id/guideline_hor_015" />
 
     <TextView
         android:id="@+id/current_location_txtv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        style="@style/TextStyle.LocationTitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
         android:hint="Helsinsky"
+        android:background="@color/grey500Transparent50"
         app:layout_constraintBottom_toTopOf="@+id/guideline_hor_015"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,14 +76,42 @@
         android:id="@+id/current_temp_txtv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:hint="20°C"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_hor_05"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_hor_045"
         app:layout_constraintEnd_toStartOf="@+id/weather_condition_imgv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_hor_015" />
+
+    <TextView
+        android:id="@+id/forecast_summary_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingStart="24dp"
+        android:background="@color/blackTransparent20"
+        android:gravity="center_vertical"
+        android:text="@string/our_forecast_for_today"
+        android:textAlignment="gravity"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_hor_055"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_hor_045" />
+
+    <TextView
+        android:id="@+id/current_summary_txtv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingStart="32dp"
+        android:background="@color/blackTransparent50"
+        android:gravity="center_vertical"
+        android:hint="brief weather description "
+        android:textAlignment="gravity"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_hor_05"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_hor_055" />
 
     <ListView
         android:id="@+id/five_days_forecast_listview"
