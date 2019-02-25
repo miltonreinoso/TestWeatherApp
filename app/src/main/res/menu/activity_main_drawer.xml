@@ -5,25 +5,24 @@
 
     <item android:visible="true"
         android:menuCategory="container"
-        android:title="Other Cities Around the World:">
+        android:title="@string/other_cities_around_the_world">
         <menu>
 
             <item
                 android:id="@+id/estambul_nav_menu_item"
-                android:title="Estambul"/>
-
+                android:title="@string/istanbul"/>
             <item
                 android:id="@+id/new_york_nav_menu_item"
-                android:title="New York" />
+                android:title="@string/new_york" />
             <item
                 android:id="@+id/tokyio_nav_menu_item"
-                android:title="Tokyo" />
+                android:title="@string/tokyo" />
             <item
                 android:id="@+id/beijing_nav_menu_item"
-                android:title="Beijing" />
+                android:title="@string/beijing" />
             <item
                 android:id="@+id/helsinski_nav_menu_item"
-                android:title="Helsinski" />
+                android:title="@string/helsinki" />
 
         </menu>
     </item>
