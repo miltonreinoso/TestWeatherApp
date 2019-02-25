@@ -45,16 +45,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private ImageView darkSkyLinkImgV;
     public ViewPager mViewPager;
-    public String APIKey = "6663a070c7910a4153e460e7ac6823c1";
 
     private WeatherCalls mService;
     private Location uniqueLocation;
     private double currentLatitude;
     private double currentLongitude;
     private LocationManager mLocationManager;
-    private final int LOCATION_PERMISSION_REQUEST_CODE = 1252;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,17 +60,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        //Request permissions for Localization and gps use.
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
 
-            if (Build.VERSION.SDK_INT >= 23) { // Marshmallow
-                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
+            if (Build.VERSION.SDK_INT >= 23) {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, ConstantsKeys.LOCATION_PERMISSION_REQUEST_CODE);
+            }
+            else{
+                mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0 ,0 ,this);
             }
         }
-        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0 ,0 ,this);
+        else{
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0 ,0 ,this);
+        }
 
         //ViewPager and Toolbar
         mViewPager = findViewById(R.id.view_pager_container);
@@ -104,11 +104,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        fetchCityData(1, ConstantsKeys.istanbulLat, ConstantsKeys.istanbulLon);
-        fetchCityData(2, ConstantsKeys.newYorkLat, ConstantsKeys.newYorkLon);
-        fetchCityData(3, ConstantsKeys.tokyoLat, ConstantsKeys.tokyoLon);
-        fetchCityData(4, ConstantsKeys.beijingLat, ConstantsKeys.beijingLon);
-        fetchCityData(5, ConstantsKeys.helsinkiLat, ConstantsKeys.helsinkiLon);
+        fetchCityData(1, ConstantsKeys.ISTANBUL_LAT, ConstantsKeys.ISTANBUL_LON);
+        fetchCityData(2, ConstantsKeys.NEW_YORK_LAT, ConstantsKeys.NEW_YORK_LON);
+        fetchCityData(3, ConstantsKeys.TOKYO_LAT, ConstantsKeys.TOKYO_LON);
+        fetchCityData(4, ConstantsKeys.BEIJING_LAT, ConstantsKeys.BEIJING_LON);
+        fetchCityData(5, ConstantsKeys.HELSINKI_LAT, ConstantsKeys.HELSINKI_LON);
 
         fetchCurrentCityData();
     }
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 + Forecast.Exclusion.MINUTELY.toString() + ","
                 + Forecast.Exclusion.FLAGS.toString());
 
-        Call<Forecast> call = mService.getForecast(APIKey,currentLatitude, currentLongitude, queryMap);
+        Call<Forecast> call = mService.getForecast(ConstantsKeys.APIKey,currentLatitude, currentLongitude, queryMap);
         call.enqueue(new Callback<Forecast>() {
 
             @Override
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 + Forecast.Exclusion.MINUTELY.toString() + ","
                 + Forecast.Exclusion.FLAGS.toString());
 
-        Call<Forecast> callLocation = mService.getForecast(APIKey,
+        Call<Forecast> callLocation = mService.getForecast(ConstantsKeys.APIKey,
                 latitude,
                 longitude,
                 queryMap);
