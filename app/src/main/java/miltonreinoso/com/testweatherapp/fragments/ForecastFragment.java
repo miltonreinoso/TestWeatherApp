@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class ForecastFragment extends Fragment {
     private static final String ARG_POSITION = "position";
     private TextView currentTemperatureTxtV;
     private TextView currentLocationTxtV;
+    private ImageView currentWeatherIcon;
     private int localPosition;
     private ListView fiveDaysForecastListView;
 
@@ -48,6 +50,7 @@ public class ForecastFragment extends Fragment {
         fiveDaysForecastListView = view.findViewById(R.id.five_days_forecast_listview);
         currentTemperatureTxtV = view.findViewById(R.id.current_temp_txtv);
         currentLocationTxtV = view.findViewById(R.id.current_location_txtv);
+        currentWeatherIcon = view.findViewById(R.id.weather_condition_imgv);
 
         switch (localPosition){
             case 0:
@@ -80,6 +83,7 @@ public class ForecastFragment extends Fragment {
         String currentTemperature = (int) forecast.getCurrentConditions().getTemperature() + " °C";
         currentTemperatureTxtV.setText(currentTemperature);
         currentLocationTxtV.setText(forecast.getTimezone());
+        currentWeatherIcon.setImageResource(getIconResource(forecast.getCurrentConditions().getIconString()));
         setFiveDaysForecastListView(forecast);
 
     }
@@ -95,12 +99,11 @@ public class ForecastFragment extends Fragment {
                 convertTimestamp(forecast.getDailyForecast().getDailyConditionsList().get(5).getTime())};
 
         Integer imagenTest[] = {
-//                ""+ forecast.getDailyForecast().getDailyConditionsList().get(0).getIconString(),
-                R.drawable.ic_sun,
-                R.drawable.ic_sun,
-                R.drawable.ic_sun,
-                R.drawable.ic_sun,
-                R.drawable.ic_sun};
+                getIconResource(forecast.getDailyForecast().getDailyConditionsList().get(1).getIconString()),
+                getIconResource(forecast.getDailyForecast().getDailyConditionsList().get(2).getIconString()),
+                getIconResource(forecast.getDailyForecast().getDailyConditionsList().get(3).getIconString()),
+                getIconResource(forecast.getDailyForecast().getDailyConditionsList().get(4).getIconString()),
+                getIconResource(forecast.getDailyForecast().getDailyConditionsList().get(5).getIconString())};
 
         String minTempTestArray[] = {
 
@@ -119,6 +122,36 @@ public class ForecastFragment extends Fragment {
 
         CustomListAdapter customListAdapter = new CustomListAdapter(getActivity(), diasTestArray, imagenTest,minTempTestArray,maxTempTestArray);
         fiveDaysForecastListView.setAdapter(customListAdapter);
+    }
+
+    private Integer getIconResource (String iconType){
+
+        switch (iconType) {
+            case "clear-day":
+                return R.drawable.ic_clear_day;
+            case "clear-night":
+                return R.drawable.ic_moon;
+            case "rain":
+                return R.drawable.ic_cloud_rain;
+            case "sleet":
+                return R.drawable.ic_cloud_sleet;
+            case "snow":
+                return R.drawable.ic_cloud_snow;
+            case "wind":
+                return R.drawable.ic_wind;
+            case "fog":
+                return R.drawable.ic_cloud_fog;
+            case "cloudy":
+                return R.drawable.ic_cloud;
+            case "partly-cloudy-day":
+                return R.drawable.ic_cloud_sun;
+            case "partly-cloudy-night":
+                return R.drawable.ic_cloud_moon;
+                default:
+                    return R.drawable.ic_cloud_refresh;
+
+        }
+
     }
 
 
