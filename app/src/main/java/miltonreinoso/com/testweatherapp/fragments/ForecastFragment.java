@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import miltonreinoso.com.testweatherapp.R;
 import miltonreinoso.com.testweatherapp.adapters.CustomListAdapter;
@@ -127,11 +128,11 @@ public class ForecastFragment extends Fragment {
         public void setFiveDaysForecastListView (Forecast forecast) {
 
         String diasTestArray[] = {
-                convertTimestamp(forecast.getDailyForecast().getDailyConditionsList().get(1).getTime()),
-                convertTimestamp(forecast.getDailyForecast().getDailyConditionsList().get(2).getTime()),
-                convertTimestamp(forecast.getDailyForecast().getDailyConditionsList().get(3).getTime()),
-                convertTimestamp(forecast.getDailyForecast().getDailyConditionsList().get(4).getTime()),
-                convertTimestamp(forecast.getDailyForecast().getDailyConditionsList().get(5).getTime())};
+                convertTimestamp(forecast.getDailyForecast().getDailyConditionsList().get(1).getTime(), forecast),
+                convertTimestamp(forecast.getDailyForecast().getDailyConditionsList().get(2).getTime(), forecast),
+                convertTimestamp(forecast.getDailyForecast().getDailyConditionsList().get(3).getTime(), forecast),
+                convertTimestamp(forecast.getDailyForecast().getDailyConditionsList().get(4).getTime(), forecast),
+                convertTimestamp(forecast.getDailyForecast().getDailyConditionsList().get(5).getTime(), forecast)};
 
         Integer imagenTest[] = {
                 getIconResource(forecast.getDailyForecast().getDailyConditionsList().get(1).getIconString()),
@@ -190,13 +191,19 @@ public class ForecastFragment extends Fragment {
     }
 
 
-    private String convertTimestamp (long intTimestamp){
+    private String convertTimestamp (long longTimeStamp, Forecast forecast){
 
-        Timestamp timestamp = new Timestamp(intTimestamp*1000);
+
+        TimeZone timeZone = TimeZone.getTimeZone(forecast.getTimezone());
+
+        Timestamp timestamp = new Timestamp(longTimeStamp*1000);
         java.util.Date date = new Date(timestamp.getTime());
 
         java.util.Calendar cal = Calendar.getInstance();
+
+        cal.setTimeZone(timeZone);
         cal.setTime(date);
+
         String day = getDayOfWeek(cal.get(Calendar.DAY_OF_WEEK)) + "";
 
         return day;

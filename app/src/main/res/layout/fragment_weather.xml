@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey100"
     tools:context=".activities.MainActivity">
 
 
@@ -88,7 +89,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:paddingStart="24dp"
-        android:background="@color/blackTransparent20"
+        android:background="@color/colorAccent"
         android:gravity="center_vertical"
         android:text="@string/our_forecast_for_today"
         android:textAlignment="gravity"
@@ -103,7 +104,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:paddingStart="32dp"
-        android:background="@color/blackTransparent50"
+        android:background="@color/colorPrimaryLight"
         android:gravity="center_vertical"
         android:hint="brief weather description "
         android:textAlignment="gravity"
@@ -120,7 +121,7 @@
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="@id/guideline_hor_05"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/blackTransparent20"
+        android:background="@color/colorPrimaryLightTransp20"
         tools:listitem="@layout/day_forecast_item"
         />
 
