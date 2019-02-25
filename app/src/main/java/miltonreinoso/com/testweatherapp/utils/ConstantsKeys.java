@@ -1,6 +1,6 @@
-package miltonreinoso.com.testweatherapp.data;
+package miltonreinoso.com.testweatherapp.utils;
 
-public final class CitiesCoordinates {
+public final class ConstantsKeys {
 
     public final static double istanbulLat = 41.005179;
     public final static double istanbulLon = 28.976171;

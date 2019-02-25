@@ -37,6 +37,7 @@ import miltonreinoso.com.testweatherapp.interfaces.WeatherCalls;
 import miltonreinoso.com.testweatherapp.models.Forecast;
 import miltonreinoso.com.testweatherapp.singleInstances.LocationsInstances;
 import miltonreinoso.com.testweatherapp.singleInstances.RetrofitSingleton;
+import miltonreinoso.com.testweatherapp.utils.ZoomOutPageTransformer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -175,6 +176,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         return 6;
                     }
                 });
+
+                mViewPager.setPageTransformer(true, new ZoomOutPageTransformer());
             }
 
             @Override
@@ -241,12 +244,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected (MenuItem item){
-        // Handle navigation view item clicks here.
+
         int id = item.getItemId();
 
-//            if (id == R.id.nav_camera) {
-//                // Handle the camera action
+        switch (id) {
+            case R.id.istanbul_nav_menu_item:
+                mViewPager.setCurrentItem(1);
+                break;
+            case R.id.new_york_nav_menu_item:
+                mViewPager.setCurrentItem(2);
+                break;
+            case R.id.tokyio_nav_menu_item:
+                mViewPager.setCurrentItem(3);
+                break;
+            case R.id.beijing_nav_menu_item:
+                mViewPager.setCurrentItem(4);
+                break;
+            case R.id.helsinski_nav_menu_item:
+                mViewPager.setCurrentItem(5);
+                break;
+            default:
+                mViewPager.setCurrentItem(0);
+                break;
+        }
+
 //            } else if (id == R.id.nav_gallery) {
+
 //
 //            } else if (id == R.id.nav_slideshow) {
 //

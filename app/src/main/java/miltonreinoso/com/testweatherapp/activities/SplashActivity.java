@@ -25,7 +25,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import miltonreinoso.com.testweatherapp.R;
-import miltonreinoso.com.testweatherapp.data.CitiesCoordinates;
+import miltonreinoso.com.testweatherapp.utils.ConstantsKeys;
 import miltonreinoso.com.testweatherapp.interfaces.WeatherCalls;
 import miltonreinoso.com.testweatherapp.models.Forecast;
 import miltonreinoso.com.testweatherapp.singleInstances.LocationsInstances;
@@ -59,7 +59,7 @@ public class SplashActivity extends AppCompatActivity implements LocationListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        ForecastApi.create(CitiesCoordinates.APIKey);
+        ForecastApi.create(ConstantsKeys.APIKey);
 
         mService = RetrofitSingleton.getRetrofitInstance().create(WeatherCalls.class);
         mService = RetrofitSingleton.getRetrofitInstance().create(WeatherCalls.class);
@@ -85,11 +85,11 @@ public class SplashActivity extends AppCompatActivity implements LocationListene
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0 ,0 ,this);
 
 
-        fetchCityData(1, CitiesCoordinates.istanbulLat, CitiesCoordinates.istanbulLon);
-        fetchCityData(2,CitiesCoordinates.newYorkLat, CitiesCoordinates.newYorkLon);
-        fetchCityData(3,CitiesCoordinates.tokyoLat, CitiesCoordinates.tokyoLon);
-        fetchCityData(4,CitiesCoordinates.beijingLat, CitiesCoordinates.beijingLon);
-        fetchCityData(5,CitiesCoordinates.helsinkiLat, CitiesCoordinates.helsinkiLon);
+        fetchCityData(1, ConstantsKeys.istanbulLat, ConstantsKeys.istanbulLon);
+        fetchCityData(2, ConstantsKeys.newYorkLat, ConstantsKeys.newYorkLon);
+        fetchCityData(3, ConstantsKeys.tokyoLat, ConstantsKeys.tokyoLon);
+        fetchCityData(4, ConstantsKeys.beijingLat, ConstantsKeys.beijingLon);
+        fetchCityData(5, ConstantsKeys.helsinkiLat, ConstantsKeys.helsinkiLon);
 
         fetchCurrentCityData();
 
@@ -115,7 +115,7 @@ public class SplashActivity extends AppCompatActivity implements LocationListene
                     + Forecast.Exclusion.FLAGS.toString());
 
 
-            Call<Forecast> call = mService.getForecast(CitiesCoordinates.APIKey, currentLatitude, currentLongitude, queryMap);
+            Call<Forecast> call = mService.getForecast(ConstantsKeys.APIKey, currentLatitude, currentLongitude, queryMap);
             call.enqueue(new Callback<Forecast>() {
 
                 @Override

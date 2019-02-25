@@ -9,7 +9,7 @@
         <menu>
 
             <item
-                android:id="@+id/estambul_nav_menu_item"
+                android:id="@+id/istanbul_nav_menu_item"
                 android:title="@string/istanbul"/>
             <item
                 android:id="@+id/new_york_nav_menu_item"
